@@ -1,0 +1,47 @@
+class CuentaBancaria {
+
+    // Propiedades privadas para el saldo y el límite de retiro
+    private var saldo: Double = 0.0
+    private var limiteRetiro: Double = 0.0
+
+    // Método set para establecer el saldo con validación
+    fun setSaldo(saldo: Double) {
+        if (saldo >= 0) {
+            this.saldo = saldo
+        } else {
+            println("Error: El saldo no puede ser negativo.")
+        }
+    }
+
+    // Método get para obtener el saldo actual
+    fun getSaldo(): Double {
+        return saldo
+    }
+
+    // Método set para establecer el límite de retiro con validación
+    fun setLimiteRetiro(limite: Double) {
+        if (limite > 0) {
+            this.limiteRetiro = limite
+        } else {
+            println("Error: El límite de retiro debe ser mayor que 0.")
+        }
+    }
+
+    // Método get para obtener el límite de retiro
+    fun getLimiteRetiro(): Double {
+        return limiteRetiro
+    }
+
+    // Método para realizar un retiro de la cuenta, respetando el límite y saldo
+    fun retirar(monto: Double) {
+        when {
+            monto <= 0 -> println("Error: El monto a retirar debe ser mayor que 0.")
+            monto > saldo -> println("Error: Saldo insuficiente. El saldo actual es $saldo.")
+            monto > limiteRetiro -> println("Error: El monto excede el límite de retiro de $limiteRetiro.")
+            else -> {
+                saldo -= monto
+                println("Retiro exitoso de $monto. Saldo restante: $saldo.")
+            }
+        }
+    }
+}
