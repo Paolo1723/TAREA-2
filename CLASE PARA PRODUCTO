@@ -1,0 +1,39 @@
+class Producto {
+
+    // Propiedades privadas para el precio y el descuento aplicable
+    private var precio: Double = 0.0
+    private var descuento: Double = 0.0
+
+    // Método set para establecer el precio con validación
+    fun setPrecio(precio: Double) {
+        if (precio >= 0) {
+            this.precio = precio
+        } else {
+            println("Error: El precio no puede ser negativo.")
+        }
+    }
+
+    // Método get para obtener el precio actual
+    fun getPrecio(): Double {
+        return precio
+    }
+
+    // Método set para establecer el descuento con validación
+    fun setDescuento(descuento: Double) {
+        if (descuento in 0.0..100.0) {
+            this.descuento = descuento
+        } else {
+            println("Error: El descuento debe estar entre 0 y 100.")
+        }
+    }
+
+    // Método get para obtener el descuento actual
+    fun getDescuento(): Double {
+        return descuento
+    }
+
+    // Método para calcular el precio final después de aplicar el descuento
+    fun calcularPrecioFinal(): Double {
+        return precio * (1 - descuento / 100)
+    }
+}
